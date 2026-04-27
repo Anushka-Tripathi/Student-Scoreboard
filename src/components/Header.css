@@ -1,0 +1,126 @@
+.header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  padding-top: 1rem;
+}
+
+.header-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-size: 11px;
+  letter-spacing: 4px;
+  color: #00dcff;
+  opacity: 0.65;
+  margin-bottom: 0.75rem;
+}
+
+.badge-line {
+  flex: 1;
+  max-width: 80px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, #00dcff70);
+}
+
+.badge-line:last-child {
+  background: linear-gradient(to left, transparent, #00dcff70);
+}
+
+.header-title {
+  font-family: 'Orbitron', monospace;
+  font-size: clamp(2.2rem, 8vw, 5rem);
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: 2px;
+  position: relative;
+  display: inline-block;
+  margin-bottom: 0.75rem;
+}
+
+.word-white {
+  color: #d0fafc;
+  text-shadow: 0 0 40px rgba(216,255,252,0.3);
+}
+
+.word-cyan {
+  color: #00dcff;
+  text-shadow:
+    0 0 30px #00dcff,
+    0 0 60px #00dcff50,
+    0 0 120px #00dcff20;
+  animation: cyanglow 3s ease-in-out infinite alternate;
+}
+
+@keyframes cyanglow {
+  from { text-shadow: 0 0 30px #00dcff, 0 0 60px #00dcff50; }
+  to   { text-shadow: 0 0 50px #00dcff, 0 0 100px #00dcff60, 0 0 200px #00dcff20; }
+}
+
+/* Glitch layers via pseudo-elements */
+.header-title::before,
+.header-title::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  overflow: hidden;
+  opacity: 0;
+}
+
+.header-title::before {
+  color: #ff3944;
+  text-shadow: -2px 0 #ff3944;
+  clip-path: polygon(0 30%, 100% 30%, 100% 50%, 0 50%);
+}
+
+.header-title::after {
+  color: #00dcff;
+  text-shadow: 2px 0 #00dcff;
+  clip-path: polygon(0 60%, 100% 60%, 100% 80%, 0 80%);
+}
+
+/* Glitch fires on the class toggled by JS */
+.glitch-active::before {
+  opacity: 0.8;
+  animation: glitch1 0.2s steps(2) forwards;
+}
+.glitch-active::after {
+  opacity: 0.8;
+  animation: glitch2 0.2s steps(2) forwards;
+}
+
+@keyframes glitch1 {
+  0%   { transform: translate(-3px, 1px) skewX(1deg); }
+  33%  { transform: translate(3px, -1px) skewX(-1deg); }
+  66%  { transform: translate(-2px, 2px) skewX(0.5deg); }
+  100% { transform: translate(0, 0); opacity: 0; }
+}
+
+@keyframes glitch2 {
+  0%   { transform: translate(3px, -1px) skewX(-1deg); }
+  33%  { transform: translate(-3px, 1px) skewX(1deg); }
+  66%  { transform: translate(2px, -2px) skewX(-0.5deg); }
+  100% { transform: translate(0, 0); opacity: 0; }
+}
+
+.header-sub {
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: #2a6878;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.blink-cursor {
+  color: #00dcff;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
